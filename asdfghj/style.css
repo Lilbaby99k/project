@@ -1,0 +1,660 @@
+/* ============================================
+   GOLDAI — style.css
+   Sections: Variables → Reset → Navbar →
+   Hero → Value Cards → Progress → Roadmap →
+   Whitepaper → Footer → Animations → Mobile
+   ============================================ */
+
+/* ── 1. CSS VARIABLES ─────────────────────── */
+:root {
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --gold-dim:    #7A5F28;
+  --black:       #050505;
+  --dark:        #0C0C0A;
+  --dark-2:      #111108;
+  --surface:     #16150F;
+  --border:      rgba(201,168,76,0.18);
+  --text:        #E8E2D0;
+  --text-muted:  #8A8070;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-ui:      'Syne', sans-serif;
+  --radius:       6px;
+  --transition:   0.35s cubic-bezier(0.22,0.61,0.36,1);
+}
+
+/* ── 2. RESET & BASE ──────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ── 3. NAVBAR ────────────────────────────── */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  transition: background var(--transition), border-bottom var(--transition);
+}
+
+#navbar.scrolled {
+  background: rgba(5,5,5,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.logo-icon {
+  color: var(--gold);
+  font-size: 1.4rem;
+}
+
+.logo-text { color: var(--text); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.nav-links a:hover { color: var(--gold-light); }
+
+.nav-cta {
+  padding: 0.55rem 1.3rem;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  color: var(--gold) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em;
+  transition: background var(--transition), color var(--transition) !important;
+}
+
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--black) !important;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--gold);
+  transition: var(--transition);
+}
+
+/* ── 4. HERO SECTION ──────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 2rem 80px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: fadeUp 1s ease both;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  background: rgba(201,168,76,0.06);
+  animation: fadeUp 1s 0.1s ease both;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 11rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.2rem;
+  animation: fadeUp 1s 0.2s ease both;
+}
+
+.title-line { color: var(--text); }
+.title-accent { color: var(--gold); }
+
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.2rem;
+  animation: fadeUp 1s 0.3s ease both;
+}
+
+.hero-trust {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 1s 0.4s ease both;
+}
+
+.hero-trust strong { color: var(--gold-light); }
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold-dim);
+  font-size: 1.4rem;
+  animation: bounce 2s infinite;
+}
+
+/* ── 5. CTA BUTTONS ───────────────────────── */
+.cta-primary {
+  display: inline-block;
+  padding: 1rem 2.4rem;
+  background: var(--gold);
+  color: var(--black);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  border: 1px solid var(--gold);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  animation: fadeUp 1s 0.5s ease both;
+}
+
+.cta-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+}
+
+.cta-center { display: block; width: fit-content; margin: 2rem auto 0; animation: none; }
+
+.cta-outline {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition);
+}
+
+.cta-outline:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* ── 6. SHARED SECTION STYLES ─────────────── */
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+
+/* ── 7. VALUE CARDS ───────────────────────── */
+.value-section {
+  padding: 7rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  text-align: left;
+  transition: border-color var(--transition), transform var(--transition);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease,
+              border-color var(--transition);
+}
+
+.card:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-4px);
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.7rem;
+}
+
+.card-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ── 8. PROGRESS SECTION ──────────────────── */
+.progress-section {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 2rem;
+}
+
+.progress-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.progress-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.progress-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.progress-percent {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--surface);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-light));
+  border-radius: 99px;
+  transition: width 1.8s cubic-bezier(0.22,0.61,0.36,1);
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.8rem;
+}
+
+.progress-price {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ── 9. ROADMAP SECTION ───────────────────── */
+.roadmap-section {
+  padding: 7rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.roadmap-track {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.roadmap-item {
+  position: relative;
+  padding-left: 2rem;
+  opacity: 0.45;
+  transition: opacity var(--transition);
+}
+
+.roadmap-item.active { opacity: 1; }
+
+.roadmap-dot {
+  position: absolute;
+  left: calc(-2rem - 5px);
+  top: 0.4rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--gold-dim);
+}
+
+.roadmap-item.active .roadmap-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(201,168,76,0.5);
+}
+
+.roadmap-phase {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.roadmap-content h4 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.roadmap-content p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ── 10. WHITEPAPER SECTION ───────────────── */
+.whitepaper-section {
+  background: var(--dark-2);
+  border-top: 1px solid var(--border);
+  padding: 7rem 2rem;
+}
+
+.wp-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.wp-text p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 420px;
+}
+
+.wp-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.wp-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  text-align: center;
+  transition: border-color var(--transition);
+}
+
+.wp-card:hover { border-color: var(--gold-dim); }
+
+.wp-icon {
+  font-size: 3rem;
+  color: var(--gold);
+  display: block;
+}
+
+.wp-tag {
+  font-size: 0.75rem;
+  font-family: var(--font-ui);
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ── 11. FOOTER ───────────────────────────── */
+.footer {
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem 2rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-social {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.footer-social a {
+  font-size: 1rem;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.footer-social a:hover { color: var(--gold); }
+
+.footer-legal {
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.footer-legal a { transition: color var(--transition); }
+.footer-legal a:hover { color: var(--gold); }
+
+/* ── 12. KEYFRAME ANIMATIONS ──────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
+  50%       { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── 13. RESPONSIVE / MOBILE ──────────────── */
+@media (max-width: 900px) {
+  .cards-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .wp-inner   { grid-template-columns: 1fr; }
+  .wp-visual  { display: none; }
+}
+
+@media (max-width: 680px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px; left: 0; right: 0;
+    background: rgba(5,5,5,0.97);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    gap: 1.4rem;
+  }
+
+  .nav-links.open { display: flex; }
+  .menu-toggle    { display: flex; }
+
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .footer-legal { flex-direction: column; gap: 0.8rem; }
+
+  .progress-meta { flex-direction: column; gap: 0.3rem; }
+}
